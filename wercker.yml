@@ -75,3 +75,24 @@ releaseBuild:
     - script:
       name: ng release build
       code: npm run ng:releaseBuild
+monaca:
+  steps:
+    - script:
+      name: copy to public dir
+      code: |
+        set -e
+        rm -rf public || exit 0;
+        mkdir public
+        cp -r www res public
+        cp package.json config.xml public
+        ls -a | grep -v -E '^public$|\.git$|\.$' | xargs rm -r
+        cp -r public/res public/www .
+        cp public/config.xml public/package.json .
+        rm -r public
+        git config user.email "suminoue.hiro@jp.fujitsu.com"
+        git config user.name "Hiroyuki Suminoue"
+        git init
+        git add .
+        git commit -m "Deploy to GitHub"
+        git remote add origin https://github.com/sumi-hiro/monacaICE.git
+        git push origin master:deploy
