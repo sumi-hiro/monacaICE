@@ -90,8 +90,8 @@ monaca:
         #cp -r public/res public/www .
         #cp public/config.xml public/package.json .
         #rm -r public
-        git config user.email "suminoue.hiro@jp.fujitsu.com"
-        git config user.name "Hiroyuki Suminoue"
+        git config --global user.email "suminoue.hiro@jp.fujitsu.com"
+        git config --global user.name "Hiroyuki Suminoue"
         git init
         git add .
         git commit -m "Deploy to GitHub"
