@@ -1,0 +1,69 @@
+box: node
+install:
+  steps:
+    - npm-install
+    - script:
+        name: echo nodejs information
+        code: |
+          echo "node version $(node -v) running"
+          echo "npm version $(npm -v) running"
+    - script:
+        name: echo angular-cli information
+        code: |
+          npm run ng:version
+build:
+  step:
+    - script:
+        name: npm rebuild
+        code: npm rebuild
+    - script:
+        name: ng build
+        code: npm run build
+lint:
+  steps:
+    - script:
+      name: npm rebuild
+      code: npm rebuild
+    - script:
+        name: lint
+        code: |
+          npm run lint
+unitTest:
+  steps:
+    - script:
+      name: npm rebuild
+      code: npm rebuild
+    - script:
+      name: install chrome headless
+      code: |
+        wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+        sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+        apt-get update
+        apt-get install -y google-chrome-stable
+    - script:
+      name: set browser
+      code: |
+        export CHROME_BIN=/usr/bin/google-chrome-stable
+    - script:
+      name: run test
+      code: |
+        npm run test:ci
+e2e:
+  steps:
+    - script:
+      name: npm rebuild
+      code: npm rebuild
+    - script:
+      name: install chrome headless
+      code: |
+        wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+        sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+        apt-get update
+        apt-get install -y google-chrome-stable
+    - script:
+      name: set browser
+      code: |
+        export CHROME_BIN=/usr/bin/google-chrome-stable
+    - script:
+      name: e2e
+      code: npm run e2e:ci
