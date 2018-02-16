@@ -95,5 +95,5 @@ monaca:
         git init
         git add .
         git commit -m "Deploy to GitHub"
-        git remote add origin https://github.com/sumi-hiro/monacaICE.git
+        git remote add origin git@github.com:sumi-hiro/monacaICE.git
         git push origin master:deploy
