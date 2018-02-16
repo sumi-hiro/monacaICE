@@ -4,9 +4,11 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
+    "ng:version": "ng --version",
     "start": "ng serve",
     "build": "ng build --prod",
     "test": "ng test",
+    "test:ci": "ng test --browser=ChromeHeadlessCI --code-coverage=true --single-run=true --no-progress=true",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
