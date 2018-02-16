@@ -78,7 +78,7 @@ releaseBuild:
 monaca:
   steps:
     - script:
-      name: gather to public dir
+      name: gather to publicDir
       code: |
         set -e
         rm -rf public || exit 0;
@@ -87,7 +87,7 @@ monaca:
         cp package.json config.xml public
         ls -a | grep -v -E '^public$|\.git$|\.$' | xargs rm -r
     - script:
-      name: manage git
+      name: git push master:deploy 
       code: |
         cd public
         # cp -r public/res public/www .
