@@ -86,14 +86,11 @@ monaca:
         cp -r www res public
         cp package.json config.xml public
         ls -a | grep -v -E '^public$|\.git$|\.$' | xargs rm -r
-        cd public
-        #cp -r public/res public/www .
-        #cp public/config.xml public/package.json .
-        #rm -r public
+        cp -r public/res public/www .
+        cp public/config.xml public/package.json .
+        rm -r public
         git config --global user.email "suminoue.hiro@jp.fujitsu.com"
         git config --global user.name "Hiroyuki Suminoue"
-        git init
         git add .
         git commit -m "Deploy to GitHub"
-        git remote add origin git@github.com:sumi-hiro/monacaICE.git
         git push origin master:deploy
