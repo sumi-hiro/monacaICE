@@ -86,9 +86,10 @@ monaca:
         cp -r www res public
         cp package.json config.xml public
         ls -a | grep -v -E '^public$|\.git$|\.$' | xargs rm -r
-        cp -r public/res public/www .
-        cp public/config.xml public/package.json .
-        rm -r public
+        cd public
+        #cp -r public/res public/www .
+        #cp public/config.xml public/package.json .
+        #rm -r public
         git config user.email "suminoue.hiro@jp.fujitsu.com"
         git config user.name "Hiroyuki Suminoue"
         git init
