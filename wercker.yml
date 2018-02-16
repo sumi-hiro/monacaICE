@@ -100,7 +100,7 @@ monaca:
         git commit -m "Deploy to GitHub"
         git remote add origin git@github.com:sumi-hiro/monacaICE.git
     - add-ssh-key:
-      keyname: monacaICE_PUBLIC
+      keyname: monacaICE
       host: github.com
     - add-to-known_hosts:
       hostname: github.com
