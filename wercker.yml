@@ -67,3 +67,11 @@ e2e:
     - script:
       name: e2e
       code: npm run e2e:ci
+releaseBuild:
+  steps:
+    - script:
+      name: npm rebuild
+      code: npm rebuild
+    - script:
+      name: ng release build
+      code: npm run ng:releaseBuild

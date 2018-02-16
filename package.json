@@ -7,6 +7,7 @@
     "ng:version": "ng --version",
     "start": "ng serve",
     "build": "ng build --prod",
+    "ng:releaseBuild": "ng build --base-href ./ --prod",
     "test": "ng test",
     "test:ci": "ng test --browser=ChromeHeadlessCI --code-coverage=true --single-run=true --no-progress=true",
     "lint": "ng lint",
