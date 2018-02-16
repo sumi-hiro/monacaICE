@@ -78,7 +78,7 @@ releaseBuild:
 monaca:
   steps:
     - script:
-      name: copy to public dir
+      name: gather to public dir
       code: |
         set -e
         rm -rf public || exit 0;
@@ -86,6 +86,9 @@ monaca:
         cp -r www res public
         cp package.json config.xml public
         ls -a | grep -v -E '^public$|\.git$|\.$' | xargs rm -r
+    - script:
+      name: manage git
+      code: |
         cd public
         #cp -r public/res public/www .
         #cp public/config.xml public/package.json .
@@ -96,4 +99,13 @@ monaca:
         git add .
         git commit -m "Deploy to GitHub"
         git remote add origin git@github.com:sumi-hiro/monacaICE.git
+    - add-ssh-key:
+      keyname: monacaICE_PUBLIC
+      host: github.com
+    - add-to-known_hosts:
+      hostname: github.com
+      fingerprint: SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8
+    - script:
+      name: git push
+      code: |
         git push origin master:deploy
