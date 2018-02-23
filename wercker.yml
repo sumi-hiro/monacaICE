@@ -90,23 +90,9 @@ monaca:
       name: git push master:deploy 
       code: |
         cd public
-        # cp -r public/res public/www .
-        # cp public/config.xml public/package.json .
-        # rm -r public
         git config --global user.email "suminoue.hiro@jp.fujitsu.com"
         git config --global user.name "Hiroyuki Suminoue"
         git init
         git add .
         git commit -m "Deploy to GitHub"
-        # git remote add origin git@github.com:sumi-hiro/monacaICE.git
         git push --force --quiet "https://${GH_TOKEN}@github.com/sumi-hiro/monacaICE.git" master:deploy
-    # - add-ssh-key:
-    #   keyname: monacaICE
-    #   host: github.com
-    # - add-to-known_hosts:
-    #   hostname: github.com
-    #   fingerprint: SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8
-    # - script:
-    #   name: git push
-    #   code: |
-    #     git push origin master:deploy
