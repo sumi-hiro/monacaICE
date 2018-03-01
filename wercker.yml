@@ -88,9 +88,8 @@ monaca-cli:
       code: echo "monaca-cli version $(monaca -v) running"
     - script:
       name: monaca login
-        expect:
-          code: monaca login '$mailAddress'
-          responses: 'Enter your password:' '$PASSWORD'
+      code: monaca login '$mailAddress'
+        responses: 'Enter your password:' '$PASSWORD'
     - script:
       name: monaca remote build android
       code: monaca remote build android
