@@ -75,24 +75,40 @@ releaseBuild:
     - script:
       name: ng release build
       code: npm run ng:releaseBuild
-monaca:
+monaca-cli:
   steps:
     - script:
-      name: gather to publicDir
-      code: |
-        set -e
-        rm -rf public || exit 0;
-        mkdir public
-        cp -r www res public
-        cp package.json config.xml public
-        ls -a | grep -v -E '^public$|\.git$|\.$' | xargs rm -r
+      name: monaca-cli install
+      code: sudo npm install -g monaca
     - script:
-      name: git push master:deploy 
-      code: |
-        cd public
-        git config --global user.email "suminoue.hiro@jp.fujitsu.com"
-        git config --global user.name "Hiroyuki Suminoue"
-        git init
-        git add .
-        git commit -m "Deploy to GitHub"
-        git push --force --quiet "https://${GH_TOKEN}@github.com/sumi-hiro/monacaICE.git" master:deploy
+      name: monaca-cli version
+      code: echo monaca -v
+monaca-remote-build:
+  steps:
+    - script:
+      name: monaca remote build android
+      code: monaca remote build android
+    - script:
+      name: monaca remote build ios
+      code: monaca remote build ios
+# monaca:
+#   steps:
+#     - script:
+#       name: gather to publicDir
+#       code: |
+#         set -e
+#         rm -rf public || exit 0;
+#         mkdir public
+#         cp -r www res public
+#         cp package.json config.xml public
+#         ls -a | grep -v -E '^public$|\.git$|\.$' | xargs rm -r
+#     - script:
+#       name: git push master:deploy 
+#       code: |
+#         cd public
+#         git config --global user.email "suminoue.hiro@jp.fujitsu.com"
+#         git config --global user.name "Hiroyuki Suminoue"
+#         git init
+#         git add .
+#         git commit -m "Deploy to GitHub"
+#         git push --force --quiet "https://${GH_TOKEN}@github.com/sumi-hiro/monacaICE.git" master:deploy
