@@ -85,7 +85,7 @@ monaca-cli:
       code: sudo npm install -g monaca
     - script:
       name: monaca-cli version
-      code: monaca -v
+      code: echo "monaca-cli version $(monaca -v) running"
 monaca-remote-build:
   steps:
   - script:
