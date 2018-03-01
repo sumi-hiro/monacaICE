@@ -77,14 +77,20 @@ releaseBuild:
       code: npm run ng:releaseBuild
 monaca-cli:
   steps:
+  - script:
+      name: npm rebuild
+      code: npm rebuild
     - script:
       name: monaca-cli install
       code: sudo npm install -g monaca
     - script:
       name: monaca-cli version
-      code: echo monaca -v
+      code: monaca -v
 monaca-remote-build:
   steps:
+  - script:
+      name: npm rebuild
+      code: npm rebuild
     - script:
       name: monaca remote build android
       code: monaca remote build android
