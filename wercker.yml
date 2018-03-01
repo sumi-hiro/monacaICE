@@ -77,7 +77,7 @@ releaseBuild:
       code: npm run ng:releaseBuild
 monaca-cli:
   steps:
-  - script:
+    - script:
       name: npm rebuild
       code: npm rebuild
     - script:
@@ -88,7 +88,7 @@ monaca-cli:
       code: echo "monaca-cli version $(monaca -v) running"
 monaca-remote-build:
   steps:
-  - script:
+    - script:
       name: npm rebuild
       code: npm rebuild
     - script:
