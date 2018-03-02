@@ -90,11 +90,22 @@ monaca-cli:
       name: monaca login
       code: echo $PASSWORD | monaca login $MAIL_ADDRESS
     - script:
+      name: make dir for App
+      script: mkdir ~/app_build
+    - script:
       name: monaca remote build android
-      code: echo 'y' | monaca remote build android
+      # code: echo 'y' | monaca remote build android
+      code: echo 'y' | monaca remote build android |grep "\.apk$"|sed -e "s/.*stored at //g"|xargs -I{} mv {} ~/app_build/app.apk
     - script:
       name: monaca remote build ios
-      code: echo 'y' | monaca remote build ios
+      # code: echo 'y' | monaca remote build ios
+      code: echo 'y' | monaca remote build ios |grep "\.ipa$"|sed -e "s/.*stored at //g"|xargs -I{} mv {} ~/app_build/app.ipa
+    - script:
+      name: monaca logout
+      code: monaca logout
+    - script:
+      name: ls ~/app_build
+      code: echo $(ls ~/app_build)
 # monaca:
 #   steps:
 #     - script:
