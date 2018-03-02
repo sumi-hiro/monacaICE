@@ -91,9 +91,7 @@ monaca-cli:
       code: echo $PASSWORD | monaca login $MAIL_ADDRESS
     - script:
       name: monaca remote build android
-      code: |
-        echo $(echo 'y' | monaca remote build android)
-        # echo 'y' | monaca remote build android
+      code: echo 'y' | monaca remote build android
     - script:
       name: monaca remote build ios
       code: echo 'y' | monaca remote build ios
