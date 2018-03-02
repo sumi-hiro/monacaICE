@@ -82,7 +82,7 @@ monaca-cli:
       code: npm rebuild
     - script:
       name: monaca-cli install
-      code: sudo npm install -g monaca
+      code: npm install -g monaca
     - script:
       name: monaca-cli version
       code: echo "monaca-cli version $(monaca -v) running"
@@ -92,6 +92,9 @@ monaca-cli:
     - script:
       name: make dir for App
       script: mkdir ~/app_build
+    - script:
+      name: ls ~/
+      code: echo $(ls ~/)
     - script:
       name: monaca remote build android
       # code: echo 'y' | monaca remote build android
