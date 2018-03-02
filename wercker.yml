@@ -110,8 +110,8 @@ monaca-cli:
 #       name: git push master:deploy 
 #       code: |
 #         cd public
-#         git config --global user.email "suminoue.hiro@jp.fujitsu.com"
-#         git config --global user.name "Hiroyuki Suminoue"
+#         git config --global user.email "$GIT_EMAIL"
+#         git config --global user.name "$GIT_NAME"
 #         git init
 #         git add .
 #         git commit -m "Deploy to GitHub"
