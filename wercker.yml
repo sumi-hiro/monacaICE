@@ -113,10 +113,13 @@ monaca-cli:
     #   name: ls $WERCKER_DIST_TEMP
     #   code: echo $(ls $WERCKER_DIST_TEMP)
     - script:
+      name: permission check
+      code: ls build -l
+    - script:
       name: remane .apk & .ipa
       code: |
-        build/*.apk mv $FILE_PATH_APK
-        build/*.ipa mv $FILE_PATH_IPA
+        cp build/*.apk $FILE_PATH_APK
+        cp build/*.ipa $FILE_PATH_IPA
     - script:
       name: ls
       code: echo $(ls)
