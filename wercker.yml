@@ -90,26 +90,26 @@ monaca-cli:
     - script:
       name: monaca login
       code: echo $PASSWORD | monaca login $MAIL_ADDRESS
-    - script:
-      name: make dir for App
-      code: mkdir -p $WERCKER_DIST_TEMP
-    - script:
-      name: ls
-      code: echo $(ls)
+    # - script:
+    #   name: make dir for App
+    #   code: mkdir -p $WERCKER_DIST_TEMP
+    # - script:
+    #   name: ls
+    #   code: echo $(ls)
     - script:
       name: monaca remote build android
       # code: echo 'y' | monaca remote build android
-      code: echo 'y' | monaca remote build android |grep "\.apk$"|sed -e "s/.*stored at //g"|xargs -I{} mv {} $WERCKER_DIST_TEMP/app.apk
+      code: echo 'y' | monaca remote build android |grep "\.apk$"|sed -e "s/.*stored at //g"|xargs -I{} mv {} $FILE_PATH_APK
     - script:
       name: monaca remote build ios
       # code: echo 'y' | monaca remote build ios
-      code: echo 'y' | monaca remote build ios |grep "\.ipa$"|sed -e "s/.*stored at //g"|xargs -I{} mv {} $WERCKER_DIST_TEMP/app.ipa
+      code: echo 'y' | monaca remote build ios |grep "\.ipa$"|sed -e "s/.*stored at //g"|xargs -I{} mv {} $FILE_PATH_IPA
     - script:
       name: monaca logout
       code: monaca logout
-    - script:
-      name: ls $WERCKER_DIST_TEMP
-      code: echo $(ls $WERCKER_DIST_TEMP)
+    # - script:
+    #   name: ls $WERCKER_DIST_TEMP
+    #   code: echo $(ls $WERCKER_DIST_TEMP)
     - script:
       name: apk deploy to DeloyGate
       code: curl -F "token=${DEPLOY_GATE_KEY}" -F "file=@${FILE_PATH_APK}" -F "message=deployTest android" https://deploygate.com/api/users/${DEPLOY_GATE_USER}/apps
