@@ -93,9 +93,9 @@ monaca-cli:
     # - script:
     #   name: make dir for App
     #   code: mkdir -p $WERCKER_DIST_TEMP
-    # - script:
-    #   name: ls
-    #   code: echo $(ls)
+    - script:
+      name: ls
+      code: echo $(ls)
     - script:
       name: monaca remote build android
       # code: echo 'y' | monaca remote build android
@@ -110,6 +110,12 @@ monaca-cli:
     # - script:
     #   name: ls $WERCKER_DIST_TEMP
     #   code: echo $(ls $WERCKER_DIST_TEMP)
+    - script:
+      name: ls
+      code: echo $(ls)
+    - script:
+      name: ls build
+      code: echo $(ls build)
     - script:
       name: apk deploy to DeloyGate
       code: curl -F "token=${DEPLOY_GATE_KEY}" -F "file=@${FILE_PATH_APK}" -F "message=deployTest android" https://deploygate.com/api/users/${DEPLOY_GATE_USER}/apps
