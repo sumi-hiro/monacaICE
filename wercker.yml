@@ -110,6 +110,12 @@ monaca-cli:
     - script:
       name: ls $WERCKER_DIST_TEMP
       code: echo $(ls $WERCKER_DIST_TEMP)
+    - script:
+      name: apk deploy to DeloyGate
+      code: curl -F "token=${DEPLOY_GATE_KEY}" -F "file=@${FILE_PATH_APK}" -F "message=deployTest android" https://deploygate.com/api/users/${DEPLOY_GATE_USER}/apps
+    - script:
+      name: ipa deploy to DeloyGate
+      code: curl -F "token=${DEPLOY_GATE_KEY}" -F "file=@${FILE_PATH_IPA}" -F "message=deployTest iOS" https://deploygate.com/api/users/${DEPLOY_GATE_USER}/apps
 # monaca:
 #   steps:
 #     - script:
