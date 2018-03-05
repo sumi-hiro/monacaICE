@@ -98,12 +98,10 @@ monaca-cli:
       code: echo $(ls)
     - script:
       name: monaca remote build android
-      # code: echo 'y' | monaca remote build android
       # code: echo 'y' | monaca remote build android |grep "\.apk$"|sed -e "s/.*stored at //g"|xargs -I{} mv -v {} $FILE_PATH_APK
       code: echo 'y' | monaca remote build android
     - script:
       name: monaca remote build ios
-      # code: echo 'y' | monaca remote build ios
       # code: echo 'y' | monaca remote build ios |grep "\.ipa$"|sed -e "s/.*stored at //g"|xargs -I{} mv -v {} $FILE_PATH_IPA
       code: echo 'y' | monaca remote build ios
     - script:
