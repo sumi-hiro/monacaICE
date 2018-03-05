@@ -99,17 +99,24 @@ monaca-cli:
     - script:
       name: monaca remote build android
       # code: echo 'y' | monaca remote build android
-      code: echo 'y' | monaca remote build android |grep "\.apk$"|sed -e "s/.*stored at //g"|xargs -I{} mv -v {} $FILE_PATH_APK
+      # code: echo 'y' | monaca remote build android |grep "\.apk$"|sed -e "s/.*stored at //g"|xargs -I{} mv -v {} $FILE_PATH_APK
+      code: echo 'y' | monaca remote build android
     - script:
       name: monaca remote build ios
       # code: echo 'y' | monaca remote build ios
-      code: echo 'y' | monaca remote build ios |grep "\.ipa$"|sed -e "s/.*stored at //g"|xargs -I{} mv -v {} $FILE_PATH_IPA
+      # code: echo 'y' | monaca remote build ios |grep "\.ipa$"|sed -e "s/.*stored at //g"|xargs -I{} mv -v {} $FILE_PATH_IPA
+      code: echo 'y' | monaca remote build ios
     - script:
       name: monaca logout
       code: monaca logout
     # - script:
     #   name: ls $WERCKER_DIST_TEMP
     #   code: echo $(ls $WERCKER_DIST_TEMP)
+    - script:
+      name: remane .apk & .ipa
+      code: |
+        build/*.apk mv $FILE_PATH_APK
+        build/*.ipa mv $FILE_PATH_IPA
     - script:
       name: ls
       code: echo $(ls)
