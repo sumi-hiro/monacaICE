@@ -37,6 +37,30 @@
                 // 保存に失敗した場合の処理
 
             });
+    // PhoneGap event handler
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    function onDeviceReady(){
+
+    window.NCMB.monaca.setHandler
+    (
+            function(jsonData){
+              alert("callback :::" + JSON.stringify(jsonData));
+            }
+        );
+        window.NCMB.monaca.setDeviceToken(
+                                    "6bd8058cbda8e2aa448c573d4e4e99e720043297687f3e809965040d12a1a42e",
+                                    "df5ed64b51406dd6d254abece09f56e685f38862dbdc5c2ebefdfeec7588ac98",
+                                    // "sender_id"
+                                    );
+    }
+    function getInstallationId() {
+        window.NCMB.monaca.getInstallationId(
+        function(id) {
+          alert("installationID is: " + id);
+        }
+      );
+    }
     window.alert('script worked!');
   </script>
   <!-- 手動追加分（終了） -->
