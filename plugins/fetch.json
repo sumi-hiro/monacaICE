@@ -1,0 +1,11 @@
+{
+    "plugin.push.nifty": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/NIFCloud-mbaas/monaca_push_plugin",
+            "subdir": "."
+        },
+        "is_top_level": true,
+        "variables": {}
+    }
+}
