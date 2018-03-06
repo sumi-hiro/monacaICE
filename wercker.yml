@@ -76,6 +76,9 @@ releaseBuild:
     - script:
       name: ng release build
       code: npm run ng:releaseBuild
+    - script:
+      name: copy dist to www
+      script: cp dist/* www
 monaca-cli:
   steps:
     - script:
