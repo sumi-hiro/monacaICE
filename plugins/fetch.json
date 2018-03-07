@@ -1,0 +1,10 @@
+{
+  "plugin.push.nifty": {
+    "source": {
+      "type": "registry",
+      "id": "ncmb-push-monaca-plugin"
+    },
+    "is_top_level": true,
+    "variables": {}
+  }
+}

@@ -50,7 +50,7 @@ bin/*
 !/plugins
 !/plugins/android.json
 !/plugins/fetch.json
-plugins/*
+# plugins/*
 platforms/*
 
 
