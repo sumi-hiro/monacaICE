@@ -23,8 +23,8 @@ build:
 lint:
   steps:
     - script:
-      name: npm rebuild
-      code: npm rebuild
+        name: npm rebuild
+        code: npm rebuild
     - script:
         name: lint
         code: |
@@ -32,128 +32,128 @@ lint:
 unitTest:
   steps:
     - script:
-      name: npm rebuild
-      code: npm rebuild
+        name: npm rebuild
+        code: npm rebuild
     - script:
-      name: install chrome headless
-      code: |
-        wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-        sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-        apt-get update
-        apt-get install -y google-chrome-stable
+        name: install chrome headless
+        code: |
+          wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+          sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+          apt-get update
+          apt-get install -y google-chrome-stable
     - script:
-      name: set browser
-      code: |
-        export CHROME_BIN=/usr/bin/google-chrome-stable
+        name: set browser
+        code: |
+          export CHROME_BIN=/usr/bin/google-chrome-stable
     - script:
-      name: run test
-      code: |
-        npm run test:ci
+        name: run test
+        code: |
+          npm run test:ci
 e2e:
   steps:
     - script:
-      name: npm rebuild
-      code: npm rebuild
+        name: npm rebuild
+        code: npm rebuild
     - script:
-      name: install chrome headless
-      code: |
-        wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-        sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-        apt-get update
-        apt-get install -y google-chrome-stable
+        name: install chrome headless
+        code: |
+          wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+          sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+          apt-get update
+          apt-get install -y google-chrome-stable
     - script:
-      name: set browser
-      code: |
-        export CHROME_BIN=/usr/bin/google-chrome-stable
+        name: set browser
+        code: |
+          export CHROME_BIN=/usr/bin/google-chrome-stable
     - script:
-      name: e2e
-      code: npm run e2e:ci
+        name: e2e
+        code: npm run e2e:ci
 releaseBuild:
   steps:
     - script:
-      name: npm rebuild
-      code: npm rebuild
+        name: npm rebuild
+        code: npm rebuild
     - script:
-      name: ng release build
-      code: npm run ng:releaseBuild
+        name: ng release build
+        code: npm run ng:releaseBuild
     - script:
-      name: copy dist to www
-      script: cp dist/* www
+        name: copy dist to www
+        code: cp dist/* www
     - script:
-      name: ls www
-      script: echo $(ls www)
+        name: ls www
+        code: echo $(ls www)
 monaca-cli:
   steps:
     - script:
-      name: npm rebuild
-      code: npm rebuild
+        name: npm rebuild
+        code: npm rebuild
     - script:
-      name: monaca-cli install
-      code: npm install -g monaca
+        name: monaca-cli install
+        code: npm install -g monaca
     - script:
-      name: monaca-cli version
-      code: echo "monaca-cli version $(monaca -v) running"
+        name: monaca-cli version
+        code: echo "monaca-cli version $(monaca -v) running"
     - script:
-      name: monaca login
-      code: echo $PASSWORD | monaca login $MAIL_ADDRESS
+        name: monaca login
+        code: echo $PASSWORD | monaca login $MAIL_ADDRESS
     # - script:
-    #   name: make dir for App
-    #   code: mkdir -p $WERCKER_DIST_TEMP
+    #     name: make dir for App
+    #     code: mkdir -p $WERCKER_DIST_TEMP
     - script:
-      name: ls
-      code: echo $(ls)
+        name: ls
+        code: echo $(ls)
     - script:
-      name: monaca remote build android
-      # code: echo 'y' | monaca remote build android |grep "\.apk$"|sed -e "s/.*stored at //g"|xargs -I{} mv -v {} $FILE_PATH_APK
-      code: echo 'y' | monaca remote build android
+        name: monaca remote build android
+        # code: echo 'y' | monaca remote build android |grep "\.apk$"|sed -e "s/.*stored at //g"|xargs -I{} mv -v {} $FILE_PATH_APK
+        code: echo 'y' | monaca remote build android
     - script:
-      name: monaca remote build ios
-      # code: echo 'y' | monaca remote build ios |grep "\.ipa$"|sed -e "s/.*stored at //g"|xargs -I{} mv -v {} $FILE_PATH_IPA
-      code: echo 'y' | monaca remote build ios
+        name: monaca remote build ios
+        # code: echo 'y' | monaca remote build ios |grep "\.ipa$"|sed -e "s/.*stored at //g"|xargs -I{} mv -v {} $FILE_PATH_IPA
+        code: echo 'y' | monaca remote build ios
     - script:
-      name: monaca logout
-      code: monaca logout
+        name: monaca logout
+        code: monaca logout
     # - script:
-    #   name: ls $WERCKER_DIST_TEMP
-    #   code: echo $(ls $WERCKER_DIST_TEMP)
+    #     name: ls $WERCKER_DIST_TEMP
+    #     code: echo $(ls $WERCKER_DIST_TEMP)
     - script:
-      name: permission check
-      code: ls build -l
+        name: permission check
+        code: ls build -l
     - script:
-      name: remane .apk & .ipa
-      code: |
-        cp build/*.apk $FILE_PATH_APK
-        cp build/*.ipa $FILE_PATH_IPA
+        name: remane .apk & .ipa
+        code: |
+          cp build/*.apk $FILE_PATH_APK
+          cp build/*.ipa $FILE_PATH_IPA
     - script:
-      name: ls
-      code: echo $(ls)
+        name: ls
+        code: echo $(ls)
     - script:
-      name: ls build
-      code: echo $(ls build)
+        name: ls build
+        code: echo $(ls build)
     - script:
-      name: apk deploy to DeloyGate
-      code: curl -F "token=${DEPLOY_GATE_KEY}" -F "file=@${FILE_PATH_APK}" -F "message=deployTest android" https://deploygate.com/api/users/${DEPLOY_GATE_USER}/apps
+        name: apk deploy to DeloyGate
+        code: curl -F "token=${DEPLOY_GATE_KEY}" -F "file=@${FILE_PATH_APK}" -F "message=deployTest android" https://deploygate.com/api/users/${DEPLOY_GATE_USER}/apps
     - script:
-      name: ipa deploy to DeloyGate
-      code: curl -F "token=${DEPLOY_GATE_KEY}" -F "file=@${FILE_PATH_IPA}" -F "message=deployTest iOS" https://deploygate.com/api/users/${DEPLOY_GATE_USER}/apps
+        name: ipa deploy to DeloyGate
+        code: curl -F "token=${DEPLOY_GATE_KEY}" -F "file=@${FILE_PATH_IPA}" -F "message=deployTest iOS" https://deploygate.com/api/users/${DEPLOY_GATE_USER}/apps
 # monaca:
 #   steps:
 #     - script:
-#       name: gather to publicDir
-#       code: |
-#         set -e
-#         rm -rf public || exit 0;
-#         mkdir public
-#         cp -r www res public
-#         cp package.json config.xml public
-#         ls -a | grep -v -E '^public$|\.git$|\.$' | xargs rm -r
+#         name: gather to publicDir
+#         code: |
+#           set -e
+#           rm -rf public || exit 0;
+#           mkdir public
+#           cp -r www res public
+#           cp package.json config.xml public
+#           ls -a | grep -v -E '^public$|\.git$|\.$' | xargs rm -r
 #     - script:
-#       name: git push master:deploy 
-#       code: |
-#         cd public
-#         git config --global user.email "$GIT_EMAIL"
-#         git config --global user.name "$GIT_NAME"
-#         git init
-#         git add .
-#         git commit -m "Deploy to GitHub"
-#         git push --force --quiet "https://${GH_TOKEN}@github.com/sumi-hiro/monacaICE.git" master:deploy
+#         name: git push master:deploy 
+#         code: |
+#           cd public
+#           git config --global user.email "$GIT_EMAIL"
+#           git config --global user.name "$GIT_NAME"
+#           git init
+#           git add .
+#           git commit -m "Deploy to GitHub"
+#           git push --force --quiet "https://${GH_TOKEN}@github.com/sumi-hiro/monacaICE.git" master:deploy
