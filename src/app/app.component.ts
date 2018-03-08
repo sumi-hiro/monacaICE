@@ -42,9 +42,9 @@ export class AppComponent {
 
     //   });
 
-    // Observable.fromEvent(document, 'deviceready')
-    //   .subscribe(() => {
-    document.addEventListener('deviceready', function() {
+    Observable.fromEvent(document, 'deviceready')
+      .subscribe(() => {
+    // document.addEventListener('deviceready', function() {
       console.log('deviceready!!');
       alert('deviceready!!');
       // ここから---------------プラグインの README.md を参考に--------------
