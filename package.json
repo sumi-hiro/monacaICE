@@ -55,7 +55,7 @@
   "cordova": {
     "plugins": {
       "cordova-plugin-whitelist": {},
-      "plugin.push.nifty": {}
+      "ncmb-push-monaca-plugin": {}
     },
     "platforms": [
       "android"
