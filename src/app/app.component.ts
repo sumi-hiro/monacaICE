@@ -19,28 +19,28 @@ declare var NCMB: any;
 export class AppComponent {
   title = 'mi';
   constructor() {
-    // APIキーの設定とSDK初期化
-    console.log('NCMB: ', NCMB);
-    const ncmb = new NCMB('6bd8058cbda8e2aa448c573d4e4e99e720043297687f3e809965040d12a1a42e',
-      'df5ed64b51406dd6d254abece09f56e685f38862dbdc5c2ebefdfeec7588ac98');
-    // ↓　ここにサンプルコードを実装　↓
-    // 保存先クラスの作成
-    const TestClass = ncmb.DataStore('TestClass');
+    // // APIキーの設定とSDK初期化
+    // console.log('NCMB: ', NCMB);
+    // const ncmb = new NCMB('6bd8058cbda8e2aa448c573d4e4e99e720043297687f3e809965040d12a1a42e',
+    //   'df5ed64b51406dd6d254abece09f56e685f38862dbdc5c2ebefdfeec7588ac98');
+    // // ↓　ここにサンプルコードを実装　↓
+    // // 保存先クラスの作成
+    // const TestClass = ncmb.DataStore('TestClass');
 
-    // 保存先クラスのインスタンスを生成
-    const testClass = new TestClass();
+    // // 保存先クラスのインスタンスを生成
+    // const testClass = new TestClass();
 
-    // 値を設定と保存
-    testClass.set('message', 'Hello, NCMB!')
-      .save()
-      .then(function (object) {
-        // 保存に成功した場合の処理
+    // // 値を設定と保存
+    // testClass.set('message', 'Hello, NCMB!')
+    //   .save()
+    //   .then(function (object) {
+    //     // 保存に成功した場合の処理
 
-      })
-      .catch(function (err) {
-        // 保存に失敗した場合の処理
+    //   })
+    //   .catch(function (err) {
+    //     // 保存に失敗した場合の処理
 
-      });
+    //   });
 
     // Observable.fromEvent(document, 'deviceready')
     //   .subscribe(() => {
