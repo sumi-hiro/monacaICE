@@ -79,6 +79,9 @@ releaseBuild:
     - script:
       name: copy dist to www
       script: cp dist/* www
+    - script:
+      name: ls www
+      script: echo $(ls www)
 monaca-cli:
   steps:
     - script:
