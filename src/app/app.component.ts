@@ -1,12 +1,10 @@
-import {
-  Component, OnInit
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import {
-  Observable
-} from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/fromEvent';
 
+// import * as NCMB from '../../plugins/plugin.push.nifty/www/nifty.js';
+// import * as NCMB from 'ncmb-push-monaca-plugin/www/nifty.js';
 // import * as NCMB from 'ncmb';
 declare var NCMB: any;
 // interface Window { NCMB: any; }
@@ -18,33 +16,35 @@ declare var NCMB: any;
 })
 export class AppComponent {
   title = 'mi';
+  deviceReady = false;
   constructor() {
-    // // APIキーの設定とSDK初期化
-    // console.log('NCMB: ', NCMB);
-    // const ncmb = new NCMB('6bd8058cbda8e2aa448c573d4e4e99e720043297687f3e809965040d12a1a42e',
-    //   'df5ed64b51406dd6d254abece09f56e685f38862dbdc5c2ebefdfeec7588ac98');
-    // // ↓　ここにサンプルコードを実装　↓
-    // // 保存先クラスの作成
-    // const TestClass = ncmb.DataStore('TestClass');
+    // APIキーの設定とSDK初期化
+    console.log('NCMB: ', NCMB);
+    const ncmb = new NCMB('6bd8058cbda8e2aa448c573d4e4e99e720043297687f3e809965040d12a1a42e',
+      'df5ed64b51406dd6d254abece09f56e685f38862dbdc5c2ebefdfeec7588ac98');
+    // ↓　ここにサンプルコードを実装　↓
+    // 保存先クラスの作成
+    const TestClass = ncmb.DataStore('TestClass');
 
-    // // 保存先クラスのインスタンスを生成
-    // const testClass = new TestClass();
+    // 保存先クラスのインスタンスを生成
+    const testClass = new TestClass();
 
-    // // 値を設定と保存
-    // testClass.set('message', 'Hello, NCMB!')
-    //   .save()
-    //   .then(function (object) {
-    //     // 保存に成功した場合の処理
+    // 値を設定と保存
+    testClass.set('message', 'Hello, NCMB!')
+      .save()
+      .then(function (object) {
+        // 保存に成功した場合の処理
 
-    //   })
-    //   .catch(function (err) {
-    //     // 保存に失敗した場合の処理
+      })
+      .catch(function (err) {
+        // 保存に失敗した場合の処理
 
-    //   });
+      });
 
     Observable.fromEvent(document, 'deviceready')
       .subscribe(() => {
-    // document.addEventListener('deviceready', function() {
+    // document.addEventListener('deviceready', () => {
+      this.deviceReady = true;
       console.log('deviceready!!');
       alert('deviceready!!');
       // ここから---------------プラグインの README.md を参考に--------------
@@ -106,6 +106,7 @@ export class AppComponent {
   }
 
   getInstallationId() {
+    console.log('NCMB: ', NCMB);
     console.log('NCMB.monaca: ', NCMB.monaca);
     // 登録されたinstallationのobjectIdを取得します。
     NCMB.monaca.getInstallationId(
@@ -113,5 +114,8 @@ export class AppComponent {
             alert('installationID is: ' + id);
         }
     );
+  }
+  buttonVlicked() {
+    this.deviceReady = !this.deviceReady;
   }
 }
