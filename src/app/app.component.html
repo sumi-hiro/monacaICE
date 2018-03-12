@@ -1,7 +1,26 @@
 <p>PushNotification Sample</p>
 <input type="button" (click)="getInstallationId()" value="getInstallationID" />
-<div *ngIf="deviceReady">aaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
+<!-- <div *ngIf="deviceReady">aaaaaaaaaaaaaaaaaaaaaaaaaaaa</div> -->
+<!-- <button (click)="buttonVlicked()">button</button> -->
 
-<button (click)="buttonVlicked()">button</button>
-
+<!-- <div>
+  <label>メッセージ</label>
+  <input type="text" [(ngModel)]="push_message" />
+  <button (click)="newPush()">新規プッシュ通知を作成</button>
+</div> -->
+<div>
+  <label>ユーザー名</label>
+  <input type="text" [(ngModel)]="newUserName">
+  <label>パスワード</label>
+  <input type="password" [(ngModel)]="newPassWord">
+  <button (click)="newUser()">新規ユーザ登録</button>
+</div>
+<div>
+  <label>ユーザー名</label>
+  <input type="text" [(ngModel)]="userName">
+  <label>パスワード</label>
+  <input type="password" [(ngModel)]="passWord">
+  <button (click)="login()">ログイン</button>
+</div>
+<div *ngIf="loginUser!=''">ログイン中のユーザー：{{loginUser}}</div>
 <router-outlet></router-outlet>

@@ -12,7 +12,7 @@
     "test:ci": "ng test --browser=ChromeHeadlessCI --code-coverage=true --single-run=true --no-progress=true",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:monaca": "npm run ng:releaseBuild && cp dist/* www && monaca remote build ios"
+    "build:monaca": "npm run ng:releaseBuild && cp dist/* www && echo 'y' | monaca remote build ios"
   },
   "private": true,
   "dependencies": {
